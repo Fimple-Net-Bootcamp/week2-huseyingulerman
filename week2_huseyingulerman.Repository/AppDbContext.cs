@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using week2_huseyingulerman.Core.Entities;
 using week2_huseyingulerman.Core.Interfaces;
 
 namespace week2_huseyingulerman.Repository
@@ -11,6 +12,7 @@ namespace week2_huseyingulerman.Repository
 
         }
 
+      
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             foreach (var item in ChangeTracker.Entries())
