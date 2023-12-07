@@ -16,6 +16,8 @@ namespace week2_huseyingulerman.Service.Mapping
         {
             CreateMap<Planets, PlanetsDTO>();
             CreateMap<PlanetsCreateDTO, Planets>();
+            CreateMap<PlanetsDTO, PlanetsCreateDTO>();
+            CreateMap<PlanetsCreateDTO,PlanetsDTO >();
             CreateMap<Satellites, SatellitesDTO>();
             CreateMap<SatellitesCreateDTO, Satellites>();
 

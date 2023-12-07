@@ -27,6 +27,7 @@ namespace week2_huseyingulerman.Repository
                             {
                                 entityReference.CreatedDate = DateTime.Now;
                                 entityReference.Status = Core.Enums.Status.Added;
+                                entityReference.IsActive= true;
                                 break;
                             }
                         case EntityState.Modified:
@@ -42,6 +43,7 @@ namespace week2_huseyingulerman.Repository
                                 Entry(entityReference).Property(x => x.ModifiedDate).IsModified = false;
                                 entityReference.DeletedDate = DateTime.Now;
                                 entityReference.Status = Core.Enums.Status.Deleted;
+                                entityReference.IsActive=false;
                                 break;
                             }
                     }

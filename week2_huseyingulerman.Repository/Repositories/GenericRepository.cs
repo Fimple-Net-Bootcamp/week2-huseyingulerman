@@ -51,6 +51,7 @@ namespace week2_huseyingulerman.Repository.Repositories
 
         public bool Remove(T entity)
         {
+            
             try
             {
                 entity.IsActive=false;
