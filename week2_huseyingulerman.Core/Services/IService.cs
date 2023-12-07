@@ -14,9 +14,9 @@ namespace week2_huseyingulerman.Core.Services
     {
         Task<IAppResult<TResponse>> AddAsync(TRequest request);
         Task<IAppResult<IEnumerable<TResponse>>> AddRangeAsync(IEnumerable<TRequest> requests);
-        Task<IAppResult<NoContentVm>> UpdateAsync(TRequest request);
-        Task<IAppResult<NoContentVm>> RemoveAsync(int id);
-        Task<IAppResult<NoContentVm>> RemoveRangeAsync(IEnumerable<int> ids);
+        Task<IAppResult<NoContentDTO>> UpdateAsync(TRequest request);
+        Task<IAppResult<NoContentDTO>> RemoveAsync(int id);
+        Task<IAppResult<NoContentDTO>> RemoveRangeAsync(IEnumerable<int> ids);
         Task<IAppResult<IEnumerable<TResponse>>> Where(Expression<Func<TEntity, bool>> expression);
         Task<IAppResult<TResponse>> GetByIdAsync(int id);
         Task<IAppResult<IEnumerable<TResponse>>> GetAllAsync();

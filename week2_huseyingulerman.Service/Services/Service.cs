@@ -74,29 +74,29 @@ namespace week2_huseyingulerman.Service.Services
             return AppResult<TResponse>.Success(StatusCodes.Status200OK, response);
         }
 
-        public async Task<IAppResult<NoContentVm>> RemoveAsync(int id)
+        public async Task<IAppResult<NoContentDTO>> RemoveAsync(int id)
         {
             var entity = await _uow.GetRepository<TEntity>().GetByIdAsync(id);
             _uow.GetRepository<TEntity>().Remove(entity);
             await _uow.CommitAsync();
-            return AppResult<NoContentVm>.Success(StatusCodes.Status204NoContent);
+            return AppResult<NoContentDTO>.Success(StatusCodes.Status204NoContent);
         }
 
-        public async Task<IAppResult<NoContentVm>> RemoveRangeAsync(IEnumerable<int> ids)
+        public async Task<IAppResult<NoContentDTO>> RemoveRangeAsync(IEnumerable<int> ids)
         {
             var entities = await _uow.GetRepository<TEntity>().Where(x => ids.Contains(x.Id)).ToListAsync();
             _uow.GetRepository<TEntity>().RemoveRange(entities);
             await _uow.CommitAsync();
-            return AppResult<NoContentVm>.Success(StatusCodes.Status204NoContent);
+            return AppResult<NoContentDTO>.Success(StatusCodes.Status204NoContent);
         }
 
-        public async Task<IAppResult<NoContentVm>> UpdateAsync(TRequest request)
+        public async Task<IAppResult<NoContentDTO>> UpdateAsync(TRequest request)
         {
             var entity = _mapper.Map<TEntity>(request);
             _uow.GetRepository<TEntity>().Update(entity);
             await _uow.CommitAsync();
 
-            return AppResult<NoContentVm>.Success(StatusCodes.Status204NoContent);
+            return AppResult<NoContentDTO>.Success(StatusCodes.Status204NoContent);
         }
 
         public async Task<IAppResult<IEnumerable<TResponse>>> Where(Expression<Func<TEntity, bool>> expression)

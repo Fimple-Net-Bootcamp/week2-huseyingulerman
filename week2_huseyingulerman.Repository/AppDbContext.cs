@@ -12,7 +12,9 @@ namespace week2_huseyingulerman.Repository
 
         }
 
-      
+        public DbSet<Planets> Planets { get; set; }
+        public DbSet<Satellites> Satellites { get; set; }
+        
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             foreach (var item in ChangeTracker.Entries())

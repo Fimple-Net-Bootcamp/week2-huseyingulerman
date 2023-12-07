@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using week2_huseyingulerman.Core.DTOs;
+using week2_huseyingulerman.Core.DTOs.Create;
+using week2_huseyingulerman.Core.Entities;
 
 namespace week2_huseyingulerman.Service.Mapping
 {
@@ -11,7 +14,11 @@ namespace week2_huseyingulerman.Service.Mapping
     {
         public MapProfile()
         {
-            
+            CreateMap<Planets, PlanetsDTO>();
+            CreateMap<PlanetsCreateDTO, Planets>();
+            CreateMap<Satellites, SatellitesDTO>();
+            CreateMap<SatellitesCreateDTO, Satellites>();
+
         }
     }
 }

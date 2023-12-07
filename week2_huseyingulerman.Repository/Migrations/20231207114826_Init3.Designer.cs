@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using week2_huseyingulerman.Repository;
 
@@ -11,9 +12,11 @@ using week2_huseyingulerman.Repository;
 namespace week2_huseyingulerman.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231207114826_Init3")]
+    partial class Init3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,8 +52,8 @@ namespace week2_huseyingulerman.Repository.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int>("Temperature")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Temperature")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Weather")
                         .IsRequired()
@@ -65,50 +68,50 @@ namespace week2_huseyingulerman.Repository.Migrations
                         {
                             Id = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
+                            IsActive = false,
                             Name = "Earth",
                             Status = 1,
-                            Temperature = 35,
+                            Temperature = 35m,
                             Weather = "Rainy"
                         },
                         new
                         {
                             Id = 2,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
+                            IsActive = false,
                             Name = "Mercury",
                             Status = 1,
-                            Temperature = -100,
+                            Temperature = -100m,
                             Weather = "Icy"
                         },
                         new
                         {
                             Id = 3,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
+                            IsActive = false,
                             Name = "Venus",
                             Status = 1,
-                            Temperature = 200,
+                            Temperature = 200m,
                             Weather = "Hot"
                         },
                         new
                         {
                             Id = 4,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
+                            IsActive = false,
                             Name = "Mars",
                             Status = 1,
-                            Temperature = 3,
+                            Temperature = 3m,
                             Weather = "Foggy"
                         },
                         new
                         {
                             Id = 5,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
+                            IsActive = false,
                             Name = "Jupiter",
                             Status = 1,
-                            Temperature = 50,
+                            Temperature = 50m,
                             Weather = "Clear Sky"
                         });
                 });
@@ -140,8 +143,8 @@ namespace week2_huseyingulerman.Repository.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int>("Temperature")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Temperature")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Weather")
                         .IsRequired()
@@ -156,50 +159,50 @@ namespace week2_huseyingulerman.Repository.Migrations
                         {
                             Id = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
+                            IsActive = false,
                             Name = "Moon",
                             Status = 1,
-                            Temperature = 80,
+                            Temperature = 80m,
                             Weather = "Warm"
                         },
                         new
                         {
                             Id = 2,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
+                            IsActive = false,
                             Name = "Callisto",
                             Status = 1,
-                            Temperature = -1,
+                            Temperature = -1m,
                             Weather = "Sleeting"
                         },
                         new
                         {
                             Id = 3,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
+                            IsActive = false,
                             Name = "Europa",
                             Status = 1,
-                            Temperature = 4,
+                            Temperature = 4m,
                             Weather = "Lighting"
                         },
                         new
                         {
                             Id = 4,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
+                            IsActive = false,
                             Name = "Deimos",
                             Status = 1,
-                            Temperature = 3,
+                            Temperature = 3m,
                             Weather = "Tornado"
                         },
                         new
                         {
                             Id = 5,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
+                            IsActive = false,
                             Name = "Ariel",
                             Status = 1,
-                            Temperature = -3,
+                            Temperature = -3m,
                             Weather = "Cloudy"
                         });
                 });

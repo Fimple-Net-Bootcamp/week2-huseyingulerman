@@ -11,6 +11,9 @@ namespace week2_huseyingulerman.Core.Entities
     public class BaseEntity : IEntity
     {
         public int Id { get; set ; }
+        public string Name { get; set; }
+        public int Temperature { get; set; }
+        public string Weather { get; set; }
         public bool IsActive { get; set ; }
         public Status Status { get ; set; }
         public DateTime CreatedDate { get ; set ; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace week2_huseyingulerman.Core.VMs
 {
-    public class NoContentVm
+    public class NoContentDTO
     {
     }
 }
