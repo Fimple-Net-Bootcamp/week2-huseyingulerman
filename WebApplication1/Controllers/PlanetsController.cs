@@ -15,12 +15,12 @@ namespace week2_huseyingulerman.Api.Controllers
     [ApiController]
     public class PlanetsController : ControllerBase
     {
-        private readonly IMapper _mapper;
+      
         private readonly IPlanetService _planetService;
-        public PlanetsController(IMapper mapper,IPlanetService plantservice)
+        public PlanetsController(IPlanetService plantservice)
         {
             _planetService=plantservice;
-            _mapper=mapper;
+          
         }
 
         [HttpGet]
@@ -42,7 +42,7 @@ namespace week2_huseyingulerman.Api.Controllers
             var planet=await _planetService.AddAsync(planetsCreateDTO);
             return CreatedAtAction(nameof(GetById), new { id = planet.Data.Id }, planet);
         }
-        [HttpDelete("/{id}")]
+        [HttpDelete("/planet/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var planet=await _planetService.RemoveAsync(id);

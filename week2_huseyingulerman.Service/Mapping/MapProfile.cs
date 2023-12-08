@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using week2_huseyingulerman.Core.DTOs;
 using week2_huseyingulerman.Core.DTOs.Create;
+using week2_huseyingulerman.Core.DTOs.Uptade;
 using week2_huseyingulerman.Core.Entities;
 
 namespace week2_huseyingulerman.Service.Mapping
@@ -18,8 +19,13 @@ namespace week2_huseyingulerman.Service.Mapping
             CreateMap<PlanetsCreateDTO, Planets>();
             CreateMap<PlanetsDTO, PlanetsCreateDTO>();
             CreateMap<PlanetsCreateDTO,PlanetsDTO >();
+            CreateMap<PlanetsUpdateDTO,Planets >();
+
             CreateMap<Satellites, SatellitesDTO>();
             CreateMap<SatellitesCreateDTO, Satellites>();
+            CreateMap<SatellitesDTO, SatellitesCreateDTO>();
+            CreateMap<SatellitesCreateDTO, SatellitesDTO>();
+            CreateMap<SatellitesUptadeDTO, Satellites>();
 
         }
     }
