@@ -3,7 +3,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using week2_huseyingulerman.Core.DTOs;
 using week2_huseyingulerman.Core.DTOs.Create;
+using week2_huseyingulerman.Core.DTOs.Uptade;
+using week2_huseyingulerman.Core.Enums;
 using week2_huseyingulerman.Core.Services;
+using week2_huseyingulerman.Core.VMs;
+using X.PagedList;
 
 namespace week2_huseyingulerman.Api.Controllers
 {
@@ -20,37 +24,34 @@ namespace week2_huseyingulerman.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll(int page=1,int pagesize=5, Arrangement sort= Arrangement.IdLowToHigh)
         {
-            var planets=await _planetService.GetAllActiveAsync();
-            return Ok(planets.Data);
+            var planets=await _planetService.GetAllActiveAsync(sort);
+            return Ok(planets.Data.ToPagedList(page, pagesize));
 
         }
-        [HttpGet("{id}/Weather")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var planet = await _planetService.GetByIdAsync(id);
             return Ok(planet.Data);
         }
-        [HttpPost("/Create/Weather")]
+        [HttpPost]
         public async Task<IActionResult> Create(PlanetsCreateDTO planetsCreateDTO)
         {
             var planet=await _planetService.AddAsync(planetsCreateDTO);
             return CreatedAtAction(nameof(GetById), new { id = planet.Data.Id }, planet);
         }
-        [HttpDelete("/Delete/Planet/{id}")]
+        [HttpDelete("/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var planet=await _planetService.RemoveAsync(id);
-            return Ok(planet.StatusCode);
+            return StatusCode(planet.StatusCode);
         }
-        [HttpPut("/Update/Weather{id}")]
-        public async Task<IActionResult> Update(int id,PlanetsCreateDTO planets)
+        [HttpPut]
+        public async Task<IActionResult> Update(PlanetsUpdateDTO planets)
         {
-            var _planet = await _planetService.GetByIdAsync(id);
-            var _planetMapper = _mapper.Map<PlanetsCreateDTO>(_planet);
-
-           var planet= await _planetService.UpdateAsync(_planetMapper);
+           var planet= await _planetService.UpdateAsync(planets);
 
             return Ok(planet.StatusCode);
         }

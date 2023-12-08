@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
+using week2_huseyingulerman.Core.Enums;
 using week2_huseyingulerman.Core.Interfaces;
 using week2_huseyingulerman.Core.Repositories;
 
@@ -51,11 +52,12 @@ namespace week2_huseyingulerman.Repository.Repositories
 
         public bool Remove(T entity)
         {
-            
             try
             {
                 entity.IsActive=false;
-                return Update(entity);
+                entity.Status=Status.Deleted;
+               var a= _dbSet.Remove(entity);
+                return true;
             }
             catch (Exception)
             {

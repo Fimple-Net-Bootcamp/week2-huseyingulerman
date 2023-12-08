@@ -8,9 +8,10 @@ namespace week2_huseyingulerman.Core.DTOs.Create
 {
     public class PlanetsCreateDTO
     {
-     
+       
         public string Name { get; set; }
         public int Temperature { get; set; }
         public string Weather { get; set; }
+        public bool IsActive { get; set; }
     }
 }

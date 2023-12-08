@@ -8,6 +8,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using week2_huseyingulerman.Core.Entities;
+using week2_huseyingulerman.Core.Enums;
 using week2_huseyingulerman.Core.Result.Abstract;
 using week2_huseyingulerman.Core.Result.Concrete;
 using week2_huseyingulerman.Core.Services;
@@ -22,7 +23,7 @@ namespace week2_huseyingulerman.Service.Services
         protected readonly IUnitOfWork _uow;
         protected readonly IMapper _mapper;
 
-        public Service(IUnitOfWork uow,IMapper mapper)
+        public Service(IUnitOfWork uow, IMapper mapper)
         {
             _uow =uow;
             _mapper=mapper;
@@ -47,12 +48,30 @@ namespace week2_huseyingulerman.Service.Services
             return AppResult<IEnumerable<TResponse>>.Success(StatusCodes.Status200OK, newResponses);
         }
 
-        public async Task<IAppResult<IEnumerable<TResponse>>> GetAllActiveAsync()
+        public async Task<IAppResult<IEnumerable<TResponse>>> GetAllActiveAsync(Arrangement sort)
         {
-            var entities = await _uow.GetRepository<TEntity>().GetAllActive().ToListAsync();
-            var responseEntities = _mapper.Map<IEnumerable<TResponse>>(entities);
 
-            return AppResult<IEnumerable<TResponse>>.Success(StatusCodes.Status200OK, responseEntities);
+            if (Arrangement.IdHighToLow== sort)
+            {
+                var entities = await _uow.GetRepository<TEntity>().GetAllActive().OrderByDescending(x => x.Id).ToListAsync(); var responseEntities = _mapper.Map<IEnumerable<TResponse>>(entities);
+                return AppResult<IEnumerable<TResponse>>.Success(StatusCodes.Status200OK, responseEntities);
+            }
+            else if (Arrangement.TemperatureLowToHigh== sort)
+            {
+                var entities = await _uow.GetRepository<TEntity>().GetAllActive().OrderBy(x => x.Temperature).ToListAsync(); var responseEntities = _mapper.Map<IEnumerable<TResponse>>(entities);
+                return AppResult<IEnumerable<TResponse>>.Success(StatusCodes.Status200OK, responseEntities);
+            }
+            else if (Arrangement.TemperatureHighToLow== sort)
+            {
+                var entities = await _uow.GetRepository<TEntity>().GetAllActive().OrderByDescending(x => x.Temperature).ToListAsync(); var responseEntities = _mapper.Map<IEnumerable<TResponse>>(entities);
+                return AppResult<IEnumerable<TResponse>>.Success(StatusCodes.Status200OK, responseEntities);
+            }
+            else
+            {
+                var entities = await _uow.GetRepository<TEntity>().GetAllActive().ToListAsync(); var responseEntities = _mapper.Map<IEnumerable<TResponse>>(entities);
+                return AppResult<IEnumerable<TResponse>>.Success(StatusCodes.Status200OK, responseEntities);
+            }
+
         }
 
         public async Task<IAppResult<IEnumerable<TResponse>>> GetAllAsync()
